@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Task from './components/Task';
 
 import axios from 'axios'
@@ -27,22 +27,24 @@ function App() {
       })
   }
 
-  const createTask = async (currentTask: string) => {
-    await axios.post(baseUrl, { title: currentTask })
-      .then((response) => {
-        //const data = response.data.tasks
-      })
-      .catch(error => {
-        if (!error.response) {
-          // network error
-          this.errorStatus = 'Error: Network Error';
-        } else {
-          this.errorStatus = error.response.data.message;
-        }
-      })
-  }
+  const createTask = useCallback(
+    async (currentTask: string) => {
+      await axios.post(baseUrl, { title: currentTask })
+        .then((response) => {
+          //const data = response.data.tasks
+        })
+        .catch(error => {
+          if (!error.response) {
+            // network error
+            this.errorStatus = 'Error: Network Error';
+          } else {
+            this.errorStatus = error.response.data.message;
+          }
+        })
+    }, []
+  )
 
-  const deleteTask = async (id: string) => {
+  const deleteTask = useCallback(async (id: string) => {
     console.log('delete')
     await axios.delete(baseUrl + `/${id}`)
       .then((response) => {
@@ -56,7 +58,8 @@ function App() {
           this.errorStatus = error.response.data.message;
         }
       })
-  }
+  }, []
+  )
 
   useEffect(() => {
     getAllTasks()
