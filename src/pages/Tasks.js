@@ -71,12 +71,6 @@ const Tasks = () => {
         deleteTask(id)
     }
 
-    const handleChangeCheckBox = () => { }
-
-    const navigatetoTaskPage = () => {
-        console.log('navigate')
-    }
-
     useEffect(() => {
         getAllTasks()
     }, [handleSubmit, handleDeleteTask])
