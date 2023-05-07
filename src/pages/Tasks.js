@@ -60,10 +60,6 @@ const Tasks = () => {
     }, []
     )
 
-    useEffect(() => {
-        getAllTasks()
-    }, [createTask, deleteTask])
-
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -80,6 +76,10 @@ const Tasks = () => {
     const navigatetoTaskPage = () => {
         console.log('navigate')
     }
+
+    useEffect(() => {
+        getAllTasks()
+    }, [handleSubmit, handleDeleteTask])
 
     return (
         <div className="container mx-auto my-40">

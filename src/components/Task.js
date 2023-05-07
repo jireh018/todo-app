@@ -57,10 +57,6 @@ const Task = (props) => {
                         >
                             update
                         </button>
-                        <button className='border rounded bg-red-500 p-2 text-white hover:bg-red-600'
-                        >
-                            delete
-                        </button>
                     </div>
                 </div>
             </div>
